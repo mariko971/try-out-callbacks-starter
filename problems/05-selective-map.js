@@ -42,14 +42,25 @@ AFTER YOU ARE FINISHED WITH THIS PROBLEM, ASK FOR A CODE REVIEW
 - How many times are you calling each callback function?
 *******************************************************************************/
 
-let selectiveMap = function() {
+let selectiveMap = function (arr, cb1, cb2) {
+  // create new empty array
+  let newArr = [];
+  // for loop to iterate over the array
+  for (let i = 0; i < arr.length; i++) {
+    /*call cb1 with current element as its argument.
+      it's boolean evaluation will be used in the if conditional statement.
+      if cb1 returns 'true', call cb2 with current element as its argument
+      and push the result to the array 'newArr'.
+      else if cb1 returns false, push the current element to newArr.*/
+    if (cb1(arr[i])) {
+      newArr.push(cb2(arr[i]));
+    } else {
+      newArr.push(arr[i]);
+    }
+  }
 
+  return newArr;
 };
-
-
-
-
-
 
 /*****************DO NOT MODIFY ANYTHING UNDER THIS  LINE**********************/
 module.exports = selectiveMap;
